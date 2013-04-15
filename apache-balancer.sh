@@ -13,7 +13,7 @@ server="localhost"
 port="80"
 manager="balancer-manager"
 
-while getopts "s:p:b:" opt; do
+while getopts "s:p:m:" opt; do
   case "$opt" in
     s)
       server=$OPTARG
