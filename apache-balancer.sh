@@ -42,7 +42,7 @@ list_workers() {
     echo "  balancer_name :    balancer name"
     exit 1
   fi  
-  $CURL -s "http://${server}:${port}/${manager}" | grep "/balancer-manager?b=${balancer}&w" | sed "s/.*href='\(.[^']*\).*/\1/" | sed "s/.*w=\(.*\)&.*/\1/"
+  $CURL -s "http://${server}:${port}/${manager}" | grep "/balancer-manager?b=${balancer}&amp;w" | sed "s/.*href='\(.[^']*\).*/\1/" | sed "s/.*w=\(.*\)&.*/\1/"
 }
 
 enable() {
@@ -99,19 +99,19 @@ status() {
 
 case "$1" in
   list-balancer)
-    list_balancers "${@:2}"
+    list_balancers
 	;;
   list-worker)
-    list_workers "${@:2}"
+    list_workers "${@}"
 	;;
   enable)
-    enable "${@:2}"
+    enable "${@}"
 	;;
   disable)
-    disable "${@:2}"
+    disable "${@}"
 	;;
   status)
-    status "${@:2}"
+    status "${@}"
 	;;
   *)
     echo "Usage: $0 {list-balancer|list-worker|enable|disable|status}"
