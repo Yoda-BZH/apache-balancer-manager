@@ -1,4 +1,6 @@
-#! /bin/sh
+#!/bin/sh
+# Author: SeonghoonKim https://gist.github.com/SeonghoonKim/5385982
+# Author: Yoda-BZH https://gist.github.com/Yoda-BZH/05a7b33df1740882a8e39e0b38de682d
 
 # Set up a default search path
 PATH="/usr/bin:/bin"
@@ -37,7 +39,8 @@ list_balancers() {
 
 list_workers() {
   balancer=$1
-  if [ -z "$balancer" ]; then
+  if [ -z "$balancer" ]
+  then
     echo "Usage: $0 [-s host] [-p port] [-m balancer-manager]  list-workers  balancer_name"
     echo "  balancer_name :    balancer name"
     exit 1
@@ -48,7 +51,8 @@ list_workers() {
 enable() {
   balancer=$1
   worker=$2
-  if [ -z "$balancer" ] || [ -z "$worker" ]; then
+  if [ -z "$balancer" ] || [ -z "$worker" ]
+  then
     echo "Usage: $0 [-s host] [-p port] [-m balancer-manager]  enable  balancer_name  worker_route"
     echo "  balancer_name :    balancer/cluster name"
     echo "  worker_route  :    worker route e.g.) ajp://192.1.2.3:8009"
@@ -56,7 +60,8 @@ enable() {
   fi
   
   nonce=`$CURL -s "http://${server}:${port}/${manager}" | grep nonce | grep "${balancer}" | sed "s/.*nonce=\(.*\)['\"].*/\1/" | tail -n 1`
-  if [ -z "$nonce" ]; then
+  if [ -z "$nonce" ]
+  then
     echo "balancer_name ($balancer) not found"
     exit 1
   fi
@@ -72,7 +77,8 @@ enable() {
 disable() {
   balancer=$1
   worker=$2
-  if [ -z "$balancer" ] || [ -z "$worker" ]; then
+  if [ -z "$balancer" ] || [ -z "$worker" ]
+  then
     echo "Usage: $0 [-s host] [-p port] [-m balancer-manager]  disable  balancer_name  worker_route"
     echo "  balancer_name :    balancer/cluster name"
     echo "  worker_route  :    worker route e.g.) ajp://192.1.2.3:8009"
@@ -81,7 +87,8 @@ disable() {
   
   echo "Disabling $2 of $1..."
   nonce=`$CURL -s "http://${server}:${port}/${manager}" | grep nonce | grep "${balancer}" | sed "s/.*nonce=\(.*\)['\"].*/\1/" | tail -n 1`
-  if [ -z "$nonce" ]; then
+  if [ -z "$nonce" ]
+  then
     echo "balancer_name ($balancer) not found"
     exit 1
   fi
