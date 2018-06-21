@@ -109,37 +109,38 @@ status() {
 case "$1" in
   list-balancer)
     list_balancers
-	;;
+    ;;
   list-worker)
     shift
     list_workers "${@}"
-	;;
+    ;;
   enable)
     shift
     enable "${@}"
-	;;
+    ;;
   disable)
     shift
     disable "${@}"
-	;;
+    ;;
   status)
     shift
     status "${@}"
-	;;
+    ;;
   *)
     echo "Usage: $0 {list-balancer|list-worker|enable|disable|status}"
-	echo ""
-	echo "Options: "
-	echo "    -s server"
-	echo "    -p port"
-	echo "    -m balancer-manager-context-path"
-	echo ""
-	echo "Commands: "
-	echo "    list-balancer"
-	echo "    list-worker  balancer-name"
-	echo "    enable   balancer_name  worker_route"
-	echo "    disable  balancer_name  worker_route"
+    echo ""
+    echo "Options:"
+    echo "    -s server"
+    echo "    -p port"
+    echo "    -m balancer-manager-context-path"
+    echo ""
+    echo "Commands:"
+    echo "    list-balancer"
+    echo "    list-worker  balancer-name"
+    echo "    enable   balancer_name  worker_route"
+    echo "    disable  balancer_name  worker_route"
     exit 1
+    ;;
 esac
 
 exit $?
