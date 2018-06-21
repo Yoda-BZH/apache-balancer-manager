@@ -6,7 +6,8 @@
 PATH="/usr/bin:/bin"
 
 CURL=`which curl`
-if [ -z "$CURL" ]; then
+if [ -z "$CURL" ]
+then
   echo "curl not found"
   exit 1
 fi
@@ -15,7 +16,8 @@ server="localhost"
 port="80"
 manager="balancer-manager"
 
-while getopts "s:p:m:" opt; do
+while getopts "s:p:m:" opt
+do
   case "$opt" in
     s)
       server=$OPTARG
@@ -51,7 +53,7 @@ list_workers() {
 enable() {
   balancer=$1
   worker=$2
-  if [ -z "$balancer" ] || [ -z "$worker" ]
+  if [ -z "$balancer" -o -z "$worker" ]
   then
     echo "Usage: $0 [-s host] [-p port] [-m balancer-manager]  enable  balancer_name  worker_route"
     echo "  balancer_name :    balancer/cluster name"
@@ -77,7 +79,7 @@ enable() {
 disable() {
   balancer=$1
   worker=$2
-  if [ -z "$balancer" ] || [ -z "$worker" ]
+  if [ -z "$balancer" -o -z "$worker" ]
   then
     echo "Usage: $0 [-s host] [-p port] [-m balancer-manager]  disable  balancer_name  worker_route"
     echo "  balancer_name :    balancer/cluster name"
