@@ -102,15 +102,19 @@ case "$1" in
     list_balancers
 	;;
   list-worker)
+    shift
     list_workers "${@}"
 	;;
   enable)
+    shift
     enable "${@}"
 	;;
   disable)
+    shift
     disable "${@}"
 	;;
   status)
+    shift
     status "${@}"
 	;;
   *)
