@@ -1,6 +1,7 @@
 #!/bin/sh
 # Author: SeonghoonKim https://gist.github.com/SeonghoonKim/5385982
 # Author: Yoda-BZH https://gist.github.com/Yoda-BZH/05a7b33df1740882a8e39e0b38de682d
+#                  https://github.com/Yoda-BZH/apache-balancer-manager/blob/master/apache-balancer.sh
 
 # Set up a default search path
 PATH="/usr/bin:/bin"
