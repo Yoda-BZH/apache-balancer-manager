@@ -62,7 +62,7 @@ enable() {
     exit 1
   fi
   
-  nonce=`$CURL -s "http://${server}:${port}/${manager}" | grep nonce | grep "${balancer}" | sed "s/.*nonce=\(.*\)['\"].*/\1/" | tail -n 1`
+  nonce=`$CURL -s "http://${server}:${port}/${manager}" | grep nonce | egrep "\b${balancer}\b" | sed "s/.*nonce=\(.*\)['\"].*/\1/" | tail -n 1`
   if [ -z "$nonce" ]
   then
     echo "balancer_name ($balancer) not found"
@@ -89,7 +89,7 @@ disable() {
   fi
   
   echo "Disabling $2 of $1..."
-  nonce=`$CURL -s "http://${server}:${port}/${manager}" | grep nonce | grep "${balancer}" | sed "s/.*nonce=\(.*\)['\"].*/\1/" | tail -n 1`
+  nonce=`$CURL -s "http://${server}:${port}/${manager}" | grep nonce | egrep "\b${balancer}\b" | sed "s/.*nonce=\(.*\)['\"].*/\1/" | tail -n 1`
   if [ -z "$nonce" ]
   then
     echo "balancer_name ($balancer) not found"
